@@ -10,7 +10,7 @@
         "start": "node -r dotenv/config .",
         "lint": "eslint . --ext .ts",
         "watch": "node -r dotenv/config -r ts-node/register src/index.ts dotenv_config_path=.env.development",
-        "dev": "nodemon -L"
+        "dev": "nodemon -I -L"
     },
     "repository": {
         "type": "git",
@@ -33,12 +33,15 @@
     "homepage": "https://github.com/ApexaGroup/mariadb-sequelize-migrations-node#readme",
     "dependencies": {
         "dotenv": "^8.2.0",
+        "inquirer": "^7.3.3",
         "mariadb": "^2.5.2",
         "sequelize": "^6.3.5",
         "umzug": "^2.3.0"
     },
     "devDependencies": {
+        "@types/inquirer": "^7.3.1",
         "@types/node": "^14.14.20",
+        "@types/umzug": "^2.3.0",
         "@typescript-eslint/eslint-plugin": "^4.13.0",
         "@typescript-eslint/parser": "^4.13.0",
         "eslint": "^7.17.0",
