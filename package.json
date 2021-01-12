@@ -1,0 +1,49 @@
+{
+    "name": "mariadb-sequelize-migrations-node",
+    "version": "1.0.0",
+    "description": "Sequelize database migrations using umzug for MariaDB",
+    "main": "dist/index.js",
+    "scripts": {
+        "prebuild": "npm run lint",
+        "build": "tsc",
+        "prestart": "npm run build",
+        "start": "node -r dotenv/config .",
+        "lint": "eslint . --ext .ts",
+        "watch": "node -r dotenv/config -r ts-node/register src/index.ts dotenv_config_path=.env.development",
+        "dev": "nodemon -L"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ApexaGroup/mariadb-sequelize-migrations-node.git"
+    },
+    "keywords": [
+        "typescript",
+        "sequelize",
+        "umzug",
+        "mariadb"
+    ],
+    "author": {
+        "name": "Apexa group",
+        "email": "apexaglobal@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ApexaGroup/mariadb-sequelize-migrations-node/issues"
+    },
+    "homepage": "https://github.com/ApexaGroup/mariadb-sequelize-migrations-node#readme",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "mariadb": "^2.5.2",
+        "sequelize": "^6.3.5",
+        "umzug": "^2.3.0"
+    },
+    "devDependencies": {
+        "@types/node": "^14.14.20",
+        "@typescript-eslint/eslint-plugin": "^4.13.0",
+        "@typescript-eslint/parser": "^4.13.0",
+        "eslint": "^7.17.0",
+        "nodemon": "^2.0.7",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.3"
+    }
+}
