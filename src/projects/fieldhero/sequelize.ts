@@ -4,7 +4,7 @@ import * as config from "../../config"
 const orm = new Sequelize({
     host: config.DB_HOST,
     port: config.DB_PORT,
-    database: config.DB_NAME,
+    database: config.databases.fh_dev,
     username: config.DB_USER,
     password: config.DB_PASS,
     dialect: "mariadb",
@@ -14,9 +14,7 @@ const orm = new Sequelize({
     logging: false,
     define: {
         freezeTableName: true,
-        timestamps: true,
-        createdAt: "createdOn",
-        updatedAt: "modifiedOn",
+        timestamps: false,
     },
 })
 

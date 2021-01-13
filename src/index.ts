@@ -8,6 +8,11 @@ inquirer
         {
             choices: [
                 { name: "Fieldhero", type: "choice", value: "fieldhero" },
+                {
+                    name: "Bid Management System - Casa",
+                    type: "choice",
+                    value: "bms_casa",
+                },
             ],
             type: "list",
             name: "project",
@@ -79,6 +84,10 @@ inquirer
                         default:
                             break
                     }
+                }
+                break
+            case "bms_casa":
+                {
                 }
                 break
             default:
