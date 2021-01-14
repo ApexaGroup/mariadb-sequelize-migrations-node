@@ -1,5 +1,5 @@
 import inquirer from "inquirer"
-import * as projects from "./projects"
+import * as handler from "./handler"
 
 console.log("Welcome to Database migrations")
 
@@ -47,47 +47,15 @@ inquirer
         },
     ])
     .then(({ project, mode, confirm }) => {
-        console.log(project, mode, confirm)
         switch (project) {
             case "fieldhero":
                 {
-                    projects.fieldhero.umzug.pending().then((pending) => {
-                        console.log(pending)
-                    })
-                    switch (mode) {
-                        case "up":
-                            {
-                                if (confirm)
-                                    projects.fieldhero.umzug.up().then(() => {
-                                        console.log("up success")
-                                    })
-                            }
-                            break
-                        case "down":
-                            {
-                                if (confirm)
-                                    projects.fieldhero.umzug.down().then(() => {
-                                        console.log("down success")
-                                    })
-                            }
-                            break
-                        case "executed":
-                            {
-                                if (confirm)
-                                    projects.fieldhero.umzug
-                                        .executed()
-                                        .then((executed) => {
-                                            console.log(executed)
-                                        })
-                            }
-                            break
-                        default:
-                            break
-                    }
+                    handler.fieldhero.load(mode, confirm)
                 }
                 break
             case "bms_casa":
                 {
+                    handler.bms_casa.load(mode, confirm)
                 }
                 break
             default:
