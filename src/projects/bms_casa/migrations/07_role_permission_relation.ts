@@ -25,11 +25,9 @@ module.exports = {
             },
             createdOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
             modifiedOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
         })
     },

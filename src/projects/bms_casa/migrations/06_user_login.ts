@@ -26,6 +26,7 @@ module.exports = {
             emailId: {
                 type: DataTypes.STRING(100),
                 allowNull: false,
+                unique: true,
             },
             passwordHash: {
                 type: DataTypes.STRING(200),
@@ -41,11 +42,9 @@ module.exports = {
             },
             createdOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
             modifiedOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
         })
     },

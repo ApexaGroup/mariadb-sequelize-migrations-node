@@ -21,11 +21,11 @@ module.exports = {
             },
             address: {
                 type: DataTypes.STRING(200),
-                allowNull: false,
+                allowNull: true,
             },
             alternateNo: {
                 type: DataTypes.STRING(45),
-                allowNull: false,
+                allowNull: true,
             },
             isActive: {
                 type: DataTypes.BOOLEAN,
@@ -34,11 +34,9 @@ module.exports = {
             },
             createdOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
             modifiedOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
         })
     },

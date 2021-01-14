@@ -15,6 +15,14 @@ module.exports = {
                 type: DataTypes.STRING(200),
                 allowNull: true,
             },
+            displayName: {
+                type: DataTypes.STRING(40),
+                allowNull: false,
+            },
+            group: {
+                type: DataTypes.STRING(30),
+                allowNull: false,
+            },
             isActive: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true,
@@ -22,11 +30,9 @@ module.exports = {
             },
             createdOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
             modifiedOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
         })
     },

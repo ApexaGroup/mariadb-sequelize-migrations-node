@@ -15,29 +15,25 @@ module.exports = {
                 type: DataTypes.STRING(100),
                 allowNull: true,
             },
-            emailId: {
+            contactEmailId: {
                 type: DataTypes.STRING(50),
                 allowNull: true,
             },
             contactPersonName: {
                 type: DataTypes.STRING(45),
-                allowNull: false,
+                allowNull: true,
             },
             contactNo: {
                 type: DataTypes.STRING(45),
-                allowNull: false,
+                allowNull: true,
             },
             alternateNo: {
-                type: DataTypes.STRING(45),
-                allowNull: false,
-            },
-            gstNo: {
                 type: DataTypes.STRING(45),
                 allowNull: true,
             },
             address: {
                 type: DataTypes.STRING(200),
-                allowNull: false,
+                allowNull: true,
             },
             state: {
                 type: DataTypes.STRING(30),
@@ -62,11 +58,9 @@ module.exports = {
             },
             createdOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
             modifiedOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
         })
     },

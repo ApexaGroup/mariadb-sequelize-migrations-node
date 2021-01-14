@@ -16,8 +16,9 @@ module.exports = {
                 allowNull: true,
             },
             uuid: {
-                type: DataTypes.STRING(50),
-                allowNull: true,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
+                allowNull: false,
             },
             isActive: {
                 type: DataTypes.BOOLEAN,
@@ -26,11 +27,9 @@ module.exports = {
             },
             createdOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
             modifiedOn: {
                 type: DataTypes.DATE,
-                allowNull: false,
             },
         })
     },
