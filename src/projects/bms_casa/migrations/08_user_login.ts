@@ -46,9 +46,18 @@ module.exports = {
             modifiedOn: {
                 type: DataTypes.DATE,
             },
-        })
+        }),
+        await query.removeColumn({ tableName: "user_login" }, "roleId")
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("user_login")
+        await query.dropTable("user_login"),
+        await query.addColumn({ tableName: "user_login" }, "roleId", {
+                type: DataTypes.INTEGER,
+                references: {
+                    model: "role_master",
+                    key: "id",
+                },
+                allowNull: false,
+            })
     },
 }
