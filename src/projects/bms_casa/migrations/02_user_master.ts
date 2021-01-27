@@ -27,6 +27,10 @@ module.exports = {
                 type: DataTypes.STRING(45),
                 allowNull: true,
             },
+            userProfileImage: {
+                type: DataTypes.STRING(500),
+                allowNull: true,
+            },
             isActive: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true,

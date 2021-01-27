@@ -12,7 +12,7 @@ module.exports = {
                 allowNull: false,
             },
             productPrice: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.DOUBLE,
                 allowNull: false,
             },
             productCode: {

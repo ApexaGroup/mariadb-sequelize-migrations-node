@@ -32,9 +32,12 @@ module.exports = {
                     key: "id",
                 },
             },
-            salesPersonName: {
-                type: DataTypes.STRING(45),
-                allowNull: false,
+            salesPersonId: {
+                type: DataTypes.INTEGER,
+                references: {
+                    model: "user_master",
+                    key: "id",
+                },
             },
             note: {
                 type: DataTypes.STRING(200),

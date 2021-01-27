@@ -18,6 +18,13 @@ module.exports = {
                     key : "id"
                 }
             },
+            salesPersonId: {
+                type: DataTypes.INTEGER,
+                references : {
+                    model : "user_master",
+                    key : "id"
+                }
+            },
             constructionCompanyId: {
                 type: DataTypes.INTEGER,
                 references : {
