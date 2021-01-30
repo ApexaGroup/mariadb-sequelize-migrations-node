@@ -23,7 +23,7 @@ module.exports = {
                 },
                 allowNull: false,
             },
-            emailId: {
+            email: {
                 type: DataTypes.STRING(100),
                 allowNull: false,
                 unique: true,
