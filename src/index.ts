@@ -3,15 +3,36 @@ import * as handler from "./handler"
 
 console.log("Welcome to Database migrations")
 
+const projects = {
+    fieldhero_dev: "fieldhero_dev",
+    bms_casa_dev: "bms_casa_dev",
+    ansatt_dev: "ansatt_dev",
+    ansatt_prod: "ansatt_prod",
+}
+
 inquirer
     .prompt([
         {
             choices: [
-                { name: "Fieldhero", type: "choice", value: "fieldhero" },
                 {
-                    name: "Bid Management System - Casa",
+                    name: "Fieldhero - Development",
                     type: "choice",
-                    value: "bms_casa",
+                    value: projects.fieldhero_dev,
+                },
+                {
+                    name: "Bid Management System - Casa - Development",
+                    type: "choice",
+                    value: projects.bms_casa_dev,
+                },
+                {
+                    name: "Ansatt - Development",
+                    type: "choice",
+                    value: projects.ansatt_dev,
+                },
+                {
+                    name: "Ansatt - Production",
+                    type: "choice",
+                    value: projects.ansatt_prod,
                 },
             ],
             type: "list",
@@ -48,14 +69,24 @@ inquirer
     ])
     .then(({ project, mode, confirm }) => {
         switch (project) {
-            case "fieldhero":
+            case projects.fieldhero_dev:
                 {
-                    handler.fieldhero.load(mode, confirm)
+                    handler.fieldhero.loadDevelopment(mode, confirm)
                 }
                 break
-            case "bms_casa":
+            case projects.bms_casa_dev:
                 {
-                    handler.bms_casa.load(mode, confirm)
+                    handler.bms_casa.loadDevelopment(mode, confirm)
+                }
+                break
+            case projects.ansatt_dev:
+                {
+                    handler.ansatt.loadDevelopment(mode, confirm)
+                }
+                break
+            case projects.ansatt_prod:
+                {
+                    handler.ansatt.loadProduction(mode, confirm)
                 }
                 break
             default:

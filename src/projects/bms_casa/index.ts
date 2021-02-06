@@ -1,4 +1,4 @@
-import { orm } from "./sequelize"
-import { umzug } from "./umzug"
+import { ormDevelopment } from "./sequelize"
+import { umzugDevelopment } from "./umzug"
 
-export { orm, umzug }
+export { ormDevelopment, umzugDevelopment }

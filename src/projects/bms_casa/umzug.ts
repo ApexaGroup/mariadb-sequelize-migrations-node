@@ -1,17 +1,17 @@
 import Umzug from "umzug"
-import { orm } from "./sequelize"
+import { ormDevelopment } from "./sequelize"
 import path from "path"
 
-const umzug = new Umzug({
+const umzugDevelopment = new Umzug({
     migrations: {
         path: path.join(__dirname, "migrations"),
-        params: [orm.getQueryInterface()],
+        params: [ormDevelopment.getQueryInterface()],
         pattern: /\d{2}_.*\.(t|j)s$/, // access dd_*.ts files where dd stands for two digit
     },
     storage: "sequelize",
     storageOptions: {
-        sequelize: orm,
+        sequelize: ormDevelopment,
     },
 })
 
-export { umzug }
+export { umzugDevelopment }

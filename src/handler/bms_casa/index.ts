@@ -1,13 +1,13 @@
 import { bms_casa } from "../../projects"
-const load = (mode: string, confirm: boolean): void => {
-    bms_casa.umzug.pending().then((pending) => {
+const loadDevelopment = (mode: string, confirm: boolean): void => {
+    bms_casa.umzugDevelopment.pending().then((pending) => {
         console.log(pending)
     })
     switch (mode) {
         case "up":
             {
                 if (confirm)
-                    bms_casa.umzug.up().then(() => {
+                    bms_casa.umzugDevelopment.up().then(() => {
                         console.log("up success")
                     })
             }
@@ -15,7 +15,7 @@ const load = (mode: string, confirm: boolean): void => {
         case "down":
             {
                 if (confirm)
-                    bms_casa.umzug.down().then(() => {
+                    bms_casa.umzugDevelopment.down().then(() => {
                         console.log("down success")
                     })
             }
@@ -23,7 +23,7 @@ const load = (mode: string, confirm: boolean): void => {
         case "executed":
             {
                 if (confirm)
-                    bms_casa.umzug.executed().then((executed) => {
+                    bms_casa.umzugDevelopment.executed().then((executed) => {
                         console.log(executed)
                     })
             }
@@ -33,4 +33,4 @@ const load = (mode: string, confirm: boolean): void => {
     }
 }
 
-export { load }
+export { loadDevelopment }

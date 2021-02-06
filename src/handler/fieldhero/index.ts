@@ -1,13 +1,13 @@
 import { fieldhero } from "../../projects"
-const load = (mode: string, confirm: boolean): void => {
-    fieldhero.umzug.pending().then((pending) => {
+const loadDevelopment = (mode: string, confirm: boolean): void => {
+    fieldhero.umzugDevelopment.pending().then((pending) => {
         console.log(pending)
     })
     switch (mode) {
         case "up":
             {
                 if (confirm)
-                    fieldhero.umzug.up().then(() => {
+                    fieldhero.umzugDevelopment.up().then(() => {
                         console.log("up success")
                     })
             }
@@ -15,7 +15,7 @@ const load = (mode: string, confirm: boolean): void => {
         case "down":
             {
                 if (confirm)
-                    fieldhero.umzug.down().then(() => {
+                    fieldhero.umzugDevelopment.down().then(() => {
                         console.log("down success")
                     })
             }
@@ -23,7 +23,7 @@ const load = (mode: string, confirm: boolean): void => {
         case "executed":
             {
                 if (confirm)
-                    fieldhero.umzug.executed().then((executed) => {
+                    fieldhero.umzugDevelopment.executed().then((executed) => {
                         console.log(executed)
                     })
             }
@@ -33,4 +33,4 @@ const load = (mode: string, confirm: boolean): void => {
     }
 }
 
-export { load }
+export { loadDevelopment }
