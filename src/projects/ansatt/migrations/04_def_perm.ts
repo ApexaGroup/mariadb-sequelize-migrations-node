@@ -84,14 +84,19 @@ module.exports = {
                 [Op.eq]: 1,
             },
         })
-        await query.bulkDelete("role_master", {
+        await query.bulkDelete("emp_basic_detail", {
             id: {
-                [Op.in]: [1, 2],
+                [Op.eq]: 1,
             },
         })
         await query.bulkDelete("permission_master", {
             id: {
                 [Op.eq]: 1,
+            },
+        })
+        await query.bulkDelete("role_master", {
+            id: {
+                [Op.in]: [1, 2],
             },
         })
     },
