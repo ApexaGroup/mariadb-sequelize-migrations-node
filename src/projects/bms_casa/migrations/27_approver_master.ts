@@ -2,21 +2,21 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         try {
-            await query.createTable("company_user_relation", {
+            await query.createTable("approver_master", {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
                 },
-                companyId: {
-                    type: DataTypes.INTEGER,
-                    references: {
-                        model: "company_master",
-                        key: "id",
-                    },
+                note: {
+                    type: DataTypes.STRING(200),
                     allowNull: false,
                 },
-                userMasterId: {
+                quotationStatus: {
+                    type: DataTypes.STRING(45),
+                    allowNull: false,
+                },
+                userId: {
                     type: DataTypes.INTEGER,
                     references: {
                         model: "user_master",
@@ -36,6 +36,6 @@ module.exports = {
         }
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("company_user_relation")
+        await query.dropTable("approver_master")
     },
 }

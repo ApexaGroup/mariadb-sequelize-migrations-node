@@ -2,27 +2,34 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         try {
-            await query.createTable("company_user_relation", {
+            await query.createTable("followUp_sub_opportunity", {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
                 },
-                companyId: {
+                subOpportunityId: {
                     type: DataTypes.INTEGER,
                     references: {
-                        model: "company_master",
+                        model: "sub_opportunity_master",
                         key: "id",
                     },
-                    allowNull: false,
+                    allowNull: true,
                 },
-                userMasterId: {
-                    type: DataTypes.INTEGER,
-                    references: {
-                        model: "user_master",
-                        key: "id",
-                    },
-                    allowNull: false,
+                contactPersonName: {
+                    type: DataTypes.STRING(50),
+                    allowNull: true,
+                },
+                contactNo: {
+                    type: DataTypes.STRING(45),
+                    allowNull: true,
+                },
+                description: {
+                    type: DataTypes.STRING(200),
+                    allowNull: true,
+                },
+                contactDate: {
+                    type: DataTypes.DATE,
                 },
                 createdOn: {
                     type: DataTypes.DATE,
@@ -36,6 +43,6 @@ module.exports = {
         }
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("company_user_relation")
+        await query.dropTable("followUp_sub_opportunity")
     },
 }

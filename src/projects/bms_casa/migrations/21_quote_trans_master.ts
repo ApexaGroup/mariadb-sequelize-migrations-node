@@ -2,22 +2,11 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         try {
-            await query.createTable("sub_opportunity_master", {
+            await query.createTable("quote_trans_master", {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
-                },
-                subProjectName: {
-                    type: DataTypes.STRING(45),
-                    allowNull: false,
-                },
-                projectId: {
-                    type: DataTypes.INTEGER,
-                    references: {
-                        model: "project_master",
-                        key: "id",
-                    },
                 },
                 constructionCompanyId: {
                     type: DataTypes.INTEGER,
@@ -26,17 +15,17 @@ module.exports = {
                         key: "id",
                     },
                 },
-                projectManagerId: {
+                subOpportunityId: {
                     type: DataTypes.INTEGER,
                     references: {
-                        model: "project_manager_master",
+                        model: "sub_opportunity_master",
                         key: "id",
                     },
                 },
-                salesPersonId: {
+                ownerId: {
                     type: DataTypes.INTEGER,
                     references: {
-                        model: "user_master",
+                        model: "company_master",
                         key: "id",
                     },
                 },
@@ -44,16 +33,28 @@ module.exports = {
                     type: DataTypes.STRING(200),
                     allowNull: true,
                 },
-                amount: {
-                    type: DataTypes.DOUBLE,
-                    allowNull: false,
+                bid: {
+                    type: DataTypes.BOOLEAN,
+                    allowNull: true,
                 },
-                status: {
-                    type: DataTypes.STRING(45),
-                    allowNull: false,
+                awarded: {
+                    type: DataTypes.BOOLEAN,
+                    allowNull: true,
+                },
+                trRequired: {
+                    type: DataTypes.BOOLEAN,
+                    allowNull: true,
+                },
+                dueDate: {
+                    type: DataTypes.DATE,
+                    allowNull: true,
                 },
                 createdOn: {
                     type: DataTypes.DATE,
+                },
+                increaseDate: {
+                    type: DataTypes.DATE,
+                    allowNull: true,
                 },
                 modifiedOn: {
                     type: DataTypes.DATE,
@@ -64,6 +65,6 @@ module.exports = {
         }
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("sub_opportunity_master")
+        await query.dropTable("quote_trans_master")
     },
 }

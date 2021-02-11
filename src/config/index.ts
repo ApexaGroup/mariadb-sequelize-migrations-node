@@ -32,4 +32,9 @@ export const SysAdm = {
     name: process.env.SYSADM_NAME || "User",
     email: process.env.SYSADM_EMAIL || "user@email.com",
     contactNo: process.env.SYSADM_CONTACT || "9876543210",
+    bms_casa: {
+        name: process.env.BMS_CASA_SYSADM_NAME || "User",
+        email: process.env.BMS_CASA_SYSADM_EMAIL || "user@email.com",
+        contactNo: process.env.BMS_CASA_SYSADM_CONTACT || "9876543210",
+    },
 }
