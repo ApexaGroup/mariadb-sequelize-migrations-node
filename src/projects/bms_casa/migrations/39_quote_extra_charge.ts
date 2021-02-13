@@ -2,21 +2,25 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         try {
-            await query.createTable("mix_design_master", {
+            await query.createTable("quote_extra_charge", {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
                 },
-                mdStrength: {
+                quoteTransactionId: {
+                    type: DataTypes.INTEGER,
+                    references: {
+                        model: "quote_trans_master",
+                        key: "id",
+                    },
+                    allowNull: false,
+                },
+                title: {
                     type: DataTypes.STRING(100),
                     allowNull: false,
                 },
-                documentPath: {
-                    type: DataTypes.STRING(200),
-                    allowNull: true,
-                },
-                proportions: {
+                price: {
                     type: DataTypes.STRING(100),
                     allowNull: false,
                 },
@@ -24,17 +28,13 @@ module.exports = {
                     type: DataTypes.STRING(25),
                     allowNull: false,
                 },
-                estYards: {
+                quoteNote: {
                     type: DataTypes.STRING(100),
-                    allowNull: false,
+                    allowNull: true,
                 },
-                conMix: {
-                    type: DataTypes.DOUBLE,
-                    allowNull: false,
-                },
-                pumpMix: {
-                    type: DataTypes.DOUBLE,
-                    allowNull: false,
+                fieldDescription: {
+                    type: DataTypes.STRING(100),
+                    allowNull: true,
                 },
                 createdOn: {
                     type: DataTypes.DATE,
@@ -48,6 +48,6 @@ module.exports = {
         }
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("mix_design_master")
+        await query.dropTable("quote_extra_charge")
     },
 }

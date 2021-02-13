@@ -2,11 +2,19 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         try {
-            await query.createTable("mix_design_master", {
+            await query.createTable("quote_mix_design_details", {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
+                },
+                quoteTransactionId: {
+                    type: DataTypes.INTEGER,
+                    references: {
+                        model: "quote_trans_master",
+                        key: "id",
+                    },
+                    allowNull: false,
                 },
                 mdStrength: {
                     type: DataTypes.STRING(100),
@@ -48,6 +56,6 @@ module.exports = {
         }
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("mix_design_master")
+        await query.dropTable("quote_mix_design_details")
     },
 }
