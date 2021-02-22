@@ -2,38 +2,47 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         try {
-            await query.createTable("mix_design_master", {
+
+            await query.createTable("design_master", {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,
                 },
-                mdStrength: {
+                mixDesgnName: {
+                    type: DataTypes.STRING(100),
+                    allowNull: false,
+                },      
+                mixDesignCode: {
+                    type: DataTypes.STRING(100),
+                    allowNull: false,
+                },    
+                wcRatio: {
                     type: DataTypes.STRING(100),
                     allowNull: false,
                 },
-                documentPath: {
-                    type: DataTypes.STRING(200),
-                    allowNull: true,
-                },
-                proportions: {
+                minRate: {
                     type: DataTypes.STRING(100),
                     allowNull: false,
                 },
-                unit: {
-                    type: DataTypes.STRING(25),
-                    allowNull: false,
-                },
-                estYards: {
+                pumpMixtestingLabName: {
                     type: DataTypes.STRING(100),
                     allowNull: false,
                 },
-                conMix: {
-                    type: DataTypes.DOUBLE,
+                plantCodeid: {
+                    type: DataTypes.INTEGER,
+                    references: {
+                        model: "company_master",
+                        key: "id",
+                    },
                     allowNull: false,
                 },
-                pumpMix: {
-                    type: DataTypes.DOUBLE,
+                strengthCategoryid: {
+                    type: DataTypes.INTEGER,
+                    references: {
+                        model: "strength_category",
+                        key: "id",
+                    },
                     allowNull: false,
                 },
                 createdOn: {
@@ -43,11 +52,12 @@ module.exports = {
                     type: DataTypes.DATE,
                 },
             })
+
         } catch (error) {
             console.log(error)
         }
     },
     down: async (query: QueryInterface) => {
-        await query.dropTable("mix_design_master")
+        await query.dropTable("design_master")
     },
 }
