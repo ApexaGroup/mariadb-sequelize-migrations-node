@@ -8,6 +8,10 @@ const ormDevelopment = new Sequelize({
     username: config.db_configs.admapexa_mariadb_dev.user,
     password: config.db_configs.admapexa_mariadb_dev.pass,
     dialect: "mariadb",
+    pool: {
+        max: 1000,
+        acquire: 10000
+    },
     dialectOptions: {
         connectionTimeout: 1000,
     },
