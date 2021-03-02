@@ -1,7 +1,7 @@
 export const App_Port: number = parseInt(process.env.PORT || "8080")
 // databases
 export const databases = {
-    fh_dev: "fieldhero_customer_dev",
+    fh_dev: "fieldhero_dev",
     fh_stage: "fieldhero_stage",
     bms_casa_dev: "bms_casa_dev",
     bms_casa_stage: "bms_casa_stage",

@@ -1,4 +1,8 @@
 const getExpiryTime = () => {
     return Date.now() + 3600000
 }
-export { getExpiryTime }
+
+const getGender = () => {
+    return ["male", "female", "other"]
+}
+export { getExpiryTime, getGender }
