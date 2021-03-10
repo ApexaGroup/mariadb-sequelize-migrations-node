@@ -5,44 +5,31 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "quote_short_load_charge_master",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
+                        quoteTransactionId: {
                             type: DataTypes.INTEGER,
                             references: {
-                                model: "user_master",
+                                model: "quote_trans_master",
                                 key: "id",
                             },
                             allowNull: false,
                         },
-                        roleId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "role_master",
-                                key: "id",
-                            },
-                            allowNull: true,
-                        },
-                        email: {
+                        title: {
                             type: DataTypes.STRING(100),
                             allowNull: false,
-                            unique: true,
                         },
-                        passwordHash: {
-                            type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
-                            type: DataTypes.STRING(50),
+                        quoteNote: {
+                            type: DataTypes.STRING(100),
                             allowNull: true,
                         },
-                        resetExpired: {
-                            type: DataTypes.DATE,
+                        fieldDescription: {
+                            type: DataTypes.STRING(100),
                             allowNull: true,
                         },
                         createdOn: {
@@ -64,7 +51,8 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
+
+            await query.dropTable("quote_short_load_charge_master", {
                 transaction: t,
             })
             await query.commitTransaction(t)

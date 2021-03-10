@@ -5,45 +5,28 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "approval_master_relation",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
+                        approvalTransId: {
                             type: DataTypes.INTEGER,
                             references: {
-                                model: "user_master",
+                                model: "approval_trans",
                                 key: "id",
                             },
                             allowNull: false,
                         },
-                        roleId: {
+                        approverMasterId: {
                             type: DataTypes.INTEGER,
                             references: {
-                                model: "role_master",
+                                model: "approver_master",
                                 key: "id",
                             },
-                            allowNull: true,
-                        },
-                        email: {
-                            type: DataTypes.STRING(100),
                             allowNull: false,
-                            unique: true,
-                        },
-                        passwordHash: {
-                            type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
-                            type: DataTypes.STRING(50),
-                            allowNull: true,
-                        },
-                        resetExpired: {
-                            type: DataTypes.DATE,
-                            allowNull: true,
                         },
                         createdOn: {
                             type: DataTypes.DATE,
@@ -64,7 +47,8 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
+            // Delete industry master table
+            await query.dropTable("approval_master_relation", {
                 transaction: t,
             })
             await query.commitTransaction(t)

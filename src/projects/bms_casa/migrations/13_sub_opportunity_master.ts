@@ -5,43 +5,70 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "sub_opportunity_master",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
+                        subProjectName: {
+                            type: DataTypes.STRING(45),
+                            allowNull: false,
+                        },
+                        projectId: {
+                            type: DataTypes.INTEGER,
+                            references: {
+                                model: "project_master",
+                                key: "id",
+                            },
+                        },
+                        constructionCompanyId: {
+                            type: DataTypes.INTEGER,
+                            references: {
+                                model: "construction_company_master",
+                                key: "id",
+                            },
+                        },
+                        projectManagerId: {
+                            type: DataTypes.INTEGER,
+                            references: {
+                                model: "project_manager_master",
+                                key: "id",
+                            },
+                        },
+                        salesPersonId: {
                             type: DataTypes.INTEGER,
                             references: {
                                 model: "user_master",
                                 key: "id",
                             },
-                            allowNull: false,
                         },
-                        roleId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "role_master",
-                                key: "id",
-                            },
-                            allowNull: true,
-                        },
-                        email: {
-                            type: DataTypes.STRING(100),
-                            allowNull: false,
-                            unique: true,
-                        },
-                        passwordHash: {
+                        note: {
                             type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
-                            type: DataTypes.STRING(50),
                             allowNull: true,
                         },
-                        resetExpired: {
+                        amount: {
+                            type: DataTypes.DOUBLE,
+                            allowNull: false,
+                        },
+                        status: {
+                            type: DataTypes.STRING(45),
+                            allowNull: false,
+                        },
+                        submittedDate: {
+                            type: DataTypes.DATE,
+                            allowNull: true,
+                        },
+                        startDate: {
+                            type: DataTypes.DATE,
+                            allowNull: true,
+                        },
+                        bidDueDate: {
+                            type: DataTypes.DATE,
+                            allowNull: true,
+                        },
+                        endDate: {
                             type: DataTypes.DATE,
                             allowNull: true,
                         },
@@ -64,9 +91,8 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
-                transaction: t,
-            })
+            // Delete industry master table
+            await query.dropTable("sub_opportunity_master", { transaction: t })
             await query.commitTransaction(t)
         } catch (error) {
             await query.rollbackTransaction(t)

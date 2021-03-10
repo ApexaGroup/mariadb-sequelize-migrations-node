@@ -5,45 +5,16 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "approval_level_master",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
+                        approvelLevel: {
                             type: DataTypes.INTEGER,
-                            references: {
-                                model: "user_master",
-                                key: "id",
-                            },
                             allowNull: false,
-                        },
-                        roleId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "role_master",
-                                key: "id",
-                            },
-                            allowNull: true,
-                        },
-                        email: {
-                            type: DataTypes.STRING(100),
-                            allowNull: false,
-                            unique: true,
-                        },
-                        passwordHash: {
-                            type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
-                            type: DataTypes.STRING(50),
-                            allowNull: true,
-                        },
-                        resetExpired: {
-                            type: DataTypes.DATE,
-                            allowNull: true,
                         },
                         createdOn: {
                             type: DataTypes.DATE,
@@ -64,9 +35,8 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
-                transaction: t,
-            })
+            // Delete industry master table
+            await query.dropTable("approval_level_master", { transaction: t })
             await query.commitTransaction(t)
         } catch (error) {
             await query.rollbackTransaction(t)

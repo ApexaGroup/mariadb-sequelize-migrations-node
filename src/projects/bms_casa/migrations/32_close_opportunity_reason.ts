@@ -5,14 +5,26 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "close_opportunity_reasons",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
+                        reasonForCloser: {
+                            type: DataTypes.STRING(200),
+                            allowNull: false,
+                        },
+                        secondLowBidderName: {
+                            type: DataTypes.STRING(100),
+                            allowNull: false,
+                        },
+                        thirdLowBidderName: {
+                            type: DataTypes.STRING(200),
+                            allowNull: false,
+                        },
+                        createdBy: {
                             type: DataTypes.INTEGER,
                             references: {
                                 model: "user_master",
@@ -20,30 +32,13 @@ module.exports = {
                             },
                             allowNull: false,
                         },
-                        roleId: {
+                        subOpportunityId: {
                             type: DataTypes.INTEGER,
                             references: {
-                                model: "role_master",
+                                model: "sub_opportunity_master",
                                 key: "id",
                             },
-                            allowNull: true,
-                        },
-                        email: {
-                            type: DataTypes.STRING(100),
                             allowNull: false,
-                            unique: true,
-                        },
-                        passwordHash: {
-                            type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
-                            type: DataTypes.STRING(50),
-                            allowNull: true,
-                        },
-                        resetExpired: {
-                            type: DataTypes.DATE,
-                            allowNull: true,
                         },
                         createdOn: {
                             type: DataTypes.DATE,
@@ -64,7 +59,7 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
+            await query.dropTable("close_opportunity_reasons", {
                 transaction: t,
             })
             await query.commitTransaction(t)

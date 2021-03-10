@@ -5,45 +5,48 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "project_manager_master",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "user_master",
-                                key: "id",
-                            },
+                        fullName: {
+                            type: DataTypes.STRING(45),
                             allowNull: false,
                         },
-                        roleId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "role_master",
-                                key: "id",
-                            },
+                        contactNo: {
+                            type: DataTypes.STRING(45),
+                            allowNull: false,
+                        },
+                        alternateNo: {
+                            type: DataTypes.STRING(45),
                             allowNull: true,
                         },
-                        email: {
-                            type: DataTypes.STRING(100),
+                        contactEmail: {
+                            type: DataTypes.STRING(60),
                             allowNull: false,
-                            unique: true,
                         },
-                        passwordHash: {
+                        address: {
                             type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
-                            type: DataTypes.STRING(50),
                             allowNull: true,
                         },
-                        resetExpired: {
-                            type: DataTypes.DATE,
+                        city: {
+                            type: DataTypes.STRING(45),
                             allowNull: true,
+                        },
+                        constructionCompanyId: {
+                            type: DataTypes.INTEGER,
+                            references: {
+                                model: "construction_company_master",
+                                key: "id",
+                            },
+                        },
+                        isActive: {
+                            type: DataTypes.BOOLEAN,
+                            allowNull: true,
+                            defaultValue: true,
                         },
                         createdOn: {
                             type: DataTypes.DATE,
@@ -64,7 +67,7 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
+            await query.dropTable("project_manager_master", {
                 transaction: t,
             })
             await query.commitTransaction(t)

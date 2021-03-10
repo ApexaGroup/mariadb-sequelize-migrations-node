@@ -2,65 +2,76 @@ import { QueryInterface, DataTypes } from "sequelize"
 module.exports = {
     up: async (query: QueryInterface) => {
         const t = await query.sequelize.transaction()
-
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_master",
+                    "construction_company_master",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        firstName: {
-                            type: DataTypes.STRING(45),
+                        companyName: {
+                            type: DataTypes.STRING(100),
                             allowNull: false,
                         },
-                        lastName: {
+                        plantId: {
+                            type: DataTypes.INTEGER,
+                            references: {
+                                model: "company_master",
+                                key: "id",
+                            },
+                        },
+                        creditLimit: {
+                            type: DataTypes.STRING(100),
+                            allowNull: true,
+                        },
+                        description: {
+                            type: DataTypes.STRING(100),
+                            allowNull: true,
+                        },
+                        contactEmailId: {
+                            type: DataTypes.STRING(50),
+                            allowNull: true,
+                        },
+                        contactPersonName: {
                             type: DataTypes.STRING(45),
                             allowNull: true,
                         },
                         contactNo: {
                             type: DataTypes.STRING(45),
-                            allowNull: false,
-                        },
-                        address: {
-                            type: DataTypes.STRING(200),
                             allowNull: true,
                         },
                         alternateNo: {
                             type: DataTypes.STRING(45),
                             allowNull: true,
                         },
-                        userProfileImage: {
-                            type: DataTypes.STRING(500),
+                        address: {
+                            type: DataTypes.STRING(200),
                             allowNull: true,
                         },
-                        uuil: {
-                            type: DataTypes.STRING(500),
-                            allowNull: false,
+                        state: {
+                            type: DataTypes.STRING(30),
+                            allowNull: true,
+                        },
+                        city: {
+                            type: DataTypes.STRING(30),
+                            allowNull: true,
+                        },
+                        zipCode: {
+                            type: DataTypes.STRING(15),
+                            allowNull: true,
+                        },
+                        creditApplication: {
+                            type: DataTypes.BOOLEAN,
+                            allowNull: true,
+                            defaultValue: false,
                         },
                         isActive: {
                             type: DataTypes.BOOLEAN,
                             allowNull: true,
                             defaultValue: true,
-                        },
-                        defaultCompanyId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "company_master",
-                                key: "id",
-                            },
-                            allowNull: false,
-                        },
-                        companyId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "company_master",
-                                key: "id",
-                            },
-                            allowNull: false,
                         },
                         createdOn: {
                             type: DataTypes.DATE,
@@ -81,8 +92,9 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            // Delete industry master table
-            await query.dropTable("user_master", { transaction: t })
+            await query.dropTable("construction_company_master", {
+                transaction: t,
+            })
             await query.commitTransaction(t)
         } catch (error) {
             await query.rollbackTransaction(t)

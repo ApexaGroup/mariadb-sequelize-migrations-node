@@ -5,45 +5,35 @@ module.exports = {
         try {
             await query.startTransaction(t),
                 await query.createTable(
-                    "user_login",
+                    "followUp_sub_opportunity",
                     {
                         id: {
                             type: DataTypes.INTEGER,
                             primaryKey: true,
                             autoIncrement: true,
                         },
-                        userId: {
+                        subOpportunityId: {
                             type: DataTypes.INTEGER,
                             references: {
-                                model: "user_master",
-                                key: "id",
-                            },
-                            allowNull: false,
-                        },
-                        roleId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "role_master",
+                                model: "sub_opportunity_master",
                                 key: "id",
                             },
                             allowNull: true,
                         },
-                        email: {
-                            type: DataTypes.STRING(100),
-                            allowNull: false,
-                            unique: true,
-                        },
-                        passwordHash: {
-                            type: DataTypes.STRING(200),
-                            allowNull: false,
-                        },
-                        resetToken: {
+                        contactPersonName: {
                             type: DataTypes.STRING(50),
                             allowNull: true,
                         },
-                        resetExpired: {
-                            type: DataTypes.DATE,
+                        contactNo: {
+                            type: DataTypes.STRING(45),
                             allowNull: true,
+                        },
+                        description: {
+                            type: DataTypes.STRING(200),
+                            allowNull: true,
+                        },
+                        contactDate: {
+                            type: DataTypes.DATE,
                         },
                         createdOn: {
                             type: DataTypes.DATE,
@@ -64,7 +54,8 @@ module.exports = {
         const t = await query.sequelize.transaction()
         try {
             await query.startTransaction(t)
-            await query.dropTable("user_login", {
+            // Delete industry master table
+            await query.dropTable("followUp_sub_opportunity", {
                 transaction: t,
             })
             await query.commitTransaction(t)
