@@ -9,7 +9,7 @@ const ormDevelopment = new Sequelize({
     password: config.db_configs.admapexa_mariadb_dev.pass,
     dialect: "mariadb",
     dialectOptions: {
-        connectionTimeout: 900000,
+        connectionTimeout: 9000000,
     },
     logging: false,
     define: {
