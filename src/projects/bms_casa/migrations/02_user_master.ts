@@ -26,7 +26,7 @@ module.exports = {
                             allowNull: false,
                         },
                         address: {
-                            type: DataTypes.STRING(200),
+                            type: DataTypes.STRING(1000),
                             allowNull: true,
                         },
                         alternateNo: {
@@ -37,7 +37,7 @@ module.exports = {
                             type: DataTypes.STRING(500),
                             allowNull: true,
                         },
-                        uuil: {
+                        uuid: {
                             type: DataTypes.STRING(500),
                             allowNull: false,
                         },
@@ -54,14 +54,26 @@ module.exports = {
                             },
                             allowNull: false,
                         },
-                        companyId: {
-                            type: DataTypes.INTEGER,
-                            references: {
-                                model: "company_master",
-                                key: "id",
-                            },
-                            allowNull: false,
+                        state: {
+                            type: DataTypes.STRING(100),
+                            allowNull: true,
                         },
+                        city: {
+                            type: DataTypes.STRING(100),
+                            allowNull: true,
+                        },
+                        zipCode: {
+                            type: DataTypes.STRING(100),
+                            allowNull: true,
+                        },
+                        // companyId: {
+                        //     type: DataTypes.INTEGER,
+                        //     references: {
+                        //         model: "company_master",
+                        //         key: "id",
+                        //     },
+                        //     allowNull: false,
+                        // },
                         createdOn: {
                             type: DataTypes.DATE,
                         },

@@ -17,7 +17,7 @@ module.exports = {
                         allowNull: false,
                     },
                     description: {
-                        type: DataTypes.STRING(100),
+                        type: DataTypes.STRING(1000),
                         allowNull: true,
                     },
                     contactEmailId: {
@@ -37,7 +37,7 @@ module.exports = {
                         allowNull: true,
                     },
                     address: {
-                        type: DataTypes.STRING(200),
+                        type: DataTypes.STRING(1000),
                         allowNull: true,
                     },
                     state: {
